@@ -1,4 +1,5 @@
 1
+
 cache = {}
 
 def caching_fibonacci(n):
@@ -14,30 +15,32 @@ def caching_fibonacci(n):
 
 fib = caching_fibonacci(10)
 print(fib)
+
+
 2
-from typing import Callable, Dict
+rom typing import Callable
 import re
+import math
 
 with open('my_file.txt', 'w') as file_path:
     file_path.write('Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, доповнений додатковими надходженнями 27.45 і 324.00 доларів.')
 
-def generator_numbers(file_path):
-    with open(file_path, 'r', encoding="utf-8") as file:
-        for line in file:
-            yield line.strip()
+def generator_numbers(text: str):
+    numbers = re.findall(r'\d+\.\d+|\d+', text)
+    for numb in numbers:
+        yield float(numb)
 
-def apply_discount(main_income: float, ex_income1: float, ex_income2: float) -> float:
-    sum_profit = main_income + ex_income1 + ex_income2
-    return sum_profit
+def sum_profit(text: str, func: Callable):
+    numbers_generator = func(text)
+    return sum(numbers_generator)
 
-total_dict: Dict[str, float] = {
-    'main_income': 1000.01,
-    'ex_income1': 27.45,
-    'ex_income2': 324.00
-}
+with open('my_file.txt', 'r') as file:
+    file_content = file.read()
 
-total_income = apply_discount(**total_dict)
+total_income = sum_profit(file_content, generator_numbers)
 print(f"Загальний дохід: {total_income}")
+
+
 4
 def parse_input(user_input):
     cmd, *args = user_input.split()
