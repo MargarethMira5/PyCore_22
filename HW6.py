@@ -1,44 +1,61 @@
-1
-cache = {}
+from collections import UserDict
 
-def caching_fibonacci(n):
-    if n <= 0:
-        return 0
-    elif n == 1:
-        return 1
-    elif n in cache:
-        return cache[n]
-    else:
-        cache[n] = caching_fibonacci(n - 1) + caching_fibonacci(n - 2)
-        return cache[n]
+class Field:
+    def __init__(self, value):
+        self.value = value
 
-fib = caching_fibonacci(10)
-print(fib)
-2
-from typing import Callable, Dict
-import re
+    def __str__(self):
+        return str(self.value)
 
-with open('my_file.txt', 'w') as file_path:
-    file_path.write('Загальний дохід працівника складається з декількох частин: 1000.01 як основний дохід, доповнений додатковими надходженнями 27.45 і 324.00 доларів.')
+class Name(Field):
+		pass
 
-def generator_numbers(file_path):
-    with open(file_path, 'r', encoding="utf-8") as file:
-        for line in file:
-            yield line.strip()
+class Phone(Field):
+		pass
 
-def apply_discount(main_income: float, ex_income1: float, ex_income2: float) -> float:
-    sum_profit = main_income + ex_income1 + ex_income2
-    return sum_profit
+class Record:
+    def __init__(self, name):
+        self.name = Name(name)
+        self.phones = []
+def __init__(self, name):
+        self.name = Name(name)
+        self.phones = []
 
-total_dict: Dict[str, float] = {
-    'main_income': 1000.01,
-    'ex_income1': 27.45,
-    'ex_income2': 324.00
-}
+def add_phone(self, phone):
+        self.phones.append(Phone(phone))
 
-total_income = apply_discount(**total_dict)
-print(f"Загальний дохід: {total_income}")
-4
+def edit_phone(self, index, new_phone):
+        if 0 <= index < len(self.phones):
+            self.phones[index] = Phone(new_phone)
+        else:
+            print("Invalid index")
+
+def delete_phone(self, index):
+        if 0 <= index < len(self.phones):
+            del self.phones[index]
+        else:
+            print("Invalid index")
+
+def __str__(self):
+        return f"Contact name: {self.name.value}, phones: {'; '.join(p.value for p in self.phones)}"
+
+class AddressBook(UserDict):
+    def add_contact(self, record):
+        self.data[record.name.value] = record
+
+
+def edit_contact(self, name, new_record):
+        if name in self.data:
+            self.data[name] = new_record
+        else:
+            print(f"Contact {name} not found")
+
+        def delete_contact(self, name):
+            if name in self.data:
+                del self.data[name]
+            else:
+                print(f"Contact {name} not found")
+
 def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
@@ -99,9 +116,9 @@ def main():
         else:
             print("Invalid command.")
 
+
+
+if __name__ == '__main__':
+    print(main)
+
      
-@input_error
-
-
-if __name__ == "__main__":
-    main()
