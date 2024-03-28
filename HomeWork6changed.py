@@ -30,12 +30,11 @@ class Record:
     def add_phone(self, phone):
         self.phones.append(Phone(phone))
             
-        if args and args[0].isdigit():
-            phone_number = args[0]
-            formatted_phone_number = f"{phone_number[:3]}-{phone_number[3:6]}-{phone_number[6:]}"
-            print("Phone number:", formatted_phone_number)
+    def format_phone_number(add_phone):
+        if phone.isdigit() and len(phone) == 10:
+            return f"{phone[:3]}-{phone[3:6]}-{phone[6:]}"
         else:
-            print("Ivalid phone number! Please write according to this format 'XXX-XXX-XXXX'")
+            return "Invalid phone number format"
 
     def edit_phone(self, index, new_phone):
         try:
@@ -76,12 +75,18 @@ class AddressBook(UserDict):
             self.data[name] = new_record
         else:
             print(f"Contact {name} not found")
+    
+    def find_contact(self, name, phones, birthday):
+        if name in self.data:
+             return  f"User Name: {self.name}, Phone Number: {self.phones}, Birthday: {self.birthday}"
+        else:
+            print(f"Contact {name} doesn`t exist")
 
-    def delete_contact(self, name):
+    def delete_contact(self, name,phone):
         if name in self.data:
             del self.data[name]
         else:
-            print(f"Contact {name} not found")
+            print(f"Contact {name} can`t be deleted. This contact doesn`t exist")
 
 
 def parse_input(user_input):
@@ -140,6 +145,7 @@ def main():
             except Exception as e:
                 print(f"An error occurred: {e}")
 
+
         elif command == "change":
             print("Changing contact...")
             try:
@@ -166,10 +172,8 @@ def main():
             def birthdays(args, book):
                 return  f'{User:[contact.name.value], Birthday:{contact.birthday} for contact in book.data.values()}
         
-        elif args and args[0].isdigit():
-            print("Phone number :", args[10])
         else:
             print("Invalid command.")
 
-if __name__ == '__main__'
+if __name__ == '__main__':
     main()

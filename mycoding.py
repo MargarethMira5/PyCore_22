@@ -240,13 +240,12 @@
 
 # print(Store[:-1])
 
-from enum import Enum
+def calculate_spaces(words):
+    answer = 0
+    for i in words:
+        if i == ' ':
+            answer += 1
+    return answer
 
-class Day(Enum):
-    MONDAY = 1
-    TUESDAY = 2
-    WEDNESDAY = 3
-    THURSDAY = 4
-    FRIDAY = 5
-    SATURDAY = 6
-    SUNDAY = 7
+words = 'a b c'
+print(calculate_spaces(words))  
